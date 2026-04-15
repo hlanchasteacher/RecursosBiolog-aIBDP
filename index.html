@@ -1,668 +1,363 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biología IB · Recursos para Profesores</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,700;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <title>IB DP Biology · Resource Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #f8faf6;
-      --surface: #ffffff;
-      --surface2: #f0f3ed;
-      --border: rgba(70,110,75,0.15);
-      --accent: #2d6a3e;
-      --accent2: #4a9d6f;
-      --accent3: #7cb342;
-      --text: #1e3a20;
-      --muted: #5a7a63;
-      --tag-bg: rgba(45,106,62,0.08);
+      --cream: #f7f3ea; --cream-dark: #ede8da; --paper: #faf8f3;
+      --ink: #1e2a1a; --ink-mid: #3d4f38; --ink-light: #7a8c72;
+      --moss: #3a6b35; --moss-light: #5a9e52; --moss-pale: #d4ead1;
+      --fern: #2d5a27; --sage: #8aac82; --sage-pale: #eaf4e7;
+      --amber: #c47c2b; --amber-pale: #fdf0dc;
+      --rose: #b04040; --rose-pale: #faeaea;
+      --border: rgba(58,107,53,0.18); --shadow: rgba(30,42,26,0.10);
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
-      background: linear-gradient(135deg, var(--bg) 0%, #f5faf6 100%);
-      color: var(--text);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      min-height: 100vh;
-      overflow-x: hidden;
+      font-family: 'Lora', Georgia, serif;
+      background-color: var(--cream);
+      color: var(--ink); min-height: 100vh; overflow-x: hidden; position: relative;
     }
-
-    /* ── BACKGROUND DECORATION ── */
     body::before {
-      content: '';
-      position: fixed;
-      top: -20vh;
-      left: -10vw;
-      width: 60vw;
-      height: 60vw;
-      background: radial-gradient(circle, rgba(74,157,111,0.08) 0%, transparent 70%);
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      background-image:
+        radial-gradient(ellipse 90% 50% at 5% 15%, rgba(90,158,82,0.09) 0%, transparent 65%),
+        radial-gradient(ellipse 70% 60% at 95% 80%, rgba(58,107,53,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 55%, rgba(196,124,43,0.05) 0%, transparent 55%);
       pointer-events: none;
-      z-index: 0;
     }
-    body::after {
-      content: '';
-      position: fixed;
-      bottom: -20vh;
-      right: -10vw;
-      width: 50vw;
-      height: 50vw;
-      background: radial-gradient(circle, rgba(124,179,66,0.06) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 0;
-    }
+    .leaf-deco { position: fixed; pointer-events: none; z-index: 0; opacity: 0.07; }
+    .leaf-deco-tl { top: -40px; left: -30px; width: 340px; transform: rotate(-25deg); }
+    .leaf-deco-br { bottom: -60px; right: -40px; width: 380px; transform: rotate(150deg); }
+    .wrapper { position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* ── HEADER ── */
-    header {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 2rem 4rem;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 2rem;
-    }
+    /* HEADER */
+    .site-header { padding: 3rem 0 0; text-align: center; position: relative; }
+    .header-rule { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, var(--moss), transparent); margin: 0 auto 1.2rem; }
+    .eyebrow { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.75rem; }
+    .site-title { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 700; color: var(--fern); line-height: 1.1; letter-spacing: -0.01em; }
+    .site-title em { font-style: italic; font-weight: 400; color: var(--ink-mid); }
+    .site-subtitle { margin-top: 0.6rem; font-size: 0.95rem; color: var(--ink-light); font-style: italic; font-family: 'Lora', serif; }
+    .ornament { display: inline-block; color: var(--sage); font-size: 1.5rem; margin: 0 0.4rem; line-height: 1; vertical-align: middle; }
+    .legend { display: inline-flex; flex-wrap: wrap; gap: 1rem; justify-content: center; margin-top: 1.4rem; background: rgba(255,255,255,0.65); border: 1px solid var(--border); border-radius: 999px; padding: 0.45rem 1.2rem; font-size: 0.78rem; color: var(--ink-light); backdrop-filter: blur(6px); font-family: 'DM Mono', monospace; letter-spacing: 0.05em; }
+    .legend-item { display: flex; align-items: center; gap: 0.35rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-free { background: var(--moss-light); } .dot-paid { background: var(--rose); } .dot-mixed { background: var(--amber); }
 
-    .header-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    .header-eyebrow::before {
-      content: '';
-      display: inline-block;
-      width: 2rem;
-      height: 1px;
-      background: var(--accent);
-    }
+    /* TABS */
+    .tabs-wrapper { display: flex; justify-content: center; margin: 2.4rem 0 0; }
+    .tabs { display: flex; background: rgba(255,255,255,0.6); border: 1px solid var(--border); border-radius: 999px; padding: 5px; gap: 4px; backdrop-filter: blur(8px); box-shadow: 0 2px 16px var(--shadow); }
+    .tab-btn { border: 1px solid transparent; background: transparent; font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: var(--ink-light); padding: 0.6rem 2rem; border-radius: 999px; cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; gap: 0.45rem; }
+    .tab-btn .tab-icon { font-size: 1.15rem; }
+    .tab-btn.active { background: linear-gradient(135deg, var(--fern), var(--moss)); color: #fff; box-shadow: 0 4px 18px rgba(45,90,39,0.30); }
+    .tab-btn:not(.active):hover { background: var(--sage-pale); color: var(--fern); border-color: var(--border); }
 
-    h1 {
-      font-family: 'Fraunces', serif;
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      font-weight: 300;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      color: var(--accent);
-    }
-    h1 em {
-      font-style: italic;
-      color: var(--accent2);
-    }
+    /* PANELS */
+    .page-panel { display: none; animation: fadeUp 0.38s ease forwards; }
+    .page-panel.active { display: block; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
 
-    .header-sub {
-      font-size: 1rem;
-      color: var(--muted);
-      margin-top: 1.25rem;
-      line-height: 1.7;
-      max-width: 480px;
-    }
+    /* PAGE HERO */
+    .page-hero { margin: 2.8rem 0 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; flex-wrap: wrap; border-bottom: 1.5px solid var(--border); padding-bottom: 1.2rem; }
+    .page-hero h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; color: var(--fern); display: flex; align-items: center; gap: 0.5rem; }
+    .page-hero p { margin-top: 0.3rem; color: var(--ink-light); font-size: 0.88rem; font-style: italic; }
+    .page-count { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--ink-light); letter-spacing: 0.15em; text-transform: uppercase; background: var(--sage-pale); padding: 0.3rem 0.8rem; border-radius: 999px; border: 1px solid var(--border); }
 
-    .header-badge {
-      background: var(--surface);
-      border: 2px solid var(--accent);
-      border-radius: 12px;
-      padding: 1.5rem;
-      text-align: center;
-      min-width: 130px;
-      box-shadow: 0 4px 15px rgba(45,106,62,0.1);
-    }
-    .badge-num {
-      font-family: 'Fraunces', serif;
-      font-size: 2.5rem;
-      font-weight: 500;
-      color: var(--accent);
-      line-height: 1;
-    }
-    .badge-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-top: 0.4rem;
-    }
+    /* SECTION LABEL */
+    .section-label { display: flex; align-items: center; gap: 0.8rem; margin: 2.2rem 0 1rem; }
+    .section-label-icon { font-size: 1rem; flex-shrink: 0; }
+    .section-label-text { font-family: 'Playfair Display', serif; font-size: 0.82rem; font-style: italic; color: var(--ink-mid); white-space: nowrap; letter-spacing: 0.04em; }
+    .section-label-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
 
-    /* ── NAV ── */
-    nav {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto 3.5rem;
-      padding: 0 2rem;
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-    }
+    /* CARD GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 0.9rem; }
 
-    .nav-pill {
-      font-size: 0.8rem;
-      font-weight: 400;
-      padding: 0.45rem 1.1rem;
-      border-radius: 100px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      text-decoration: none;
-      transition: all 0.2s;
-      cursor: pointer;
-      background: var(--surface);
-    }
-    .nav-pill:hover, .nav-pill.active {
-      background: var(--tag-bg);
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+    /* RESOURCE CARD */
+    .resource-card { background: rgba(255,255,255,0.72); border: 1px solid var(--border); border-radius: 1.1rem; padding: 1.15rem 1.2rem; display: flex; flex-direction: column; gap: 0.55rem; backdrop-filter: blur(6px); box-shadow: 0 2px 10px var(--shadow); transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease, background 0.22s ease; position: relative; overflow: hidden; }
+    .resource-card::before { content: ''; position: absolute; left: 0; top: 18%; bottom: 18%; width: 3px; border-radius: 0 3px 3px 0; background: linear-gradient(180deg, var(--moss-light), var(--fern)); opacity: 0; transition: opacity 0.22s ease; }
+    .resource-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(45,90,39,0.14), 0 0 0 1px rgba(58,107,53,0.20); border-color: rgba(58,107,53,0.35); background: rgba(255,255,255,0.92); }
+    .resource-card:hover::before { opacity: 1; }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 0.5rem; }
+    .card-name { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 700; color: var(--ink); line-height: 1.35; }
+    .card-name a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--sage); transition: color 0.18s, border-color 0.18s; }
+    .card-name a:hover { color: var(--fern); border-bottom-color: var(--fern); border-bottom-style: solid; }
+    .cost-badge { display: inline-flex; align-items: center; gap: 0.22rem; padding: 0.18rem 0.55rem; border-radius: 999px; font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+    .cost-free { background: var(--moss-pale); color: var(--fern); border: 1px solid rgba(90,158,82,0.3); }
+    .cost-paid { background: var(--rose-pale); color: var(--rose); border: 1px solid rgba(176,64,64,0.25); }
+    .cost-mixed { background: var(--amber-pale); color: var(--amber); border: 1px solid rgba(196,124,43,0.3); }
+    .card-chips { display: flex; flex-wrap: wrap; gap: 0.28rem; }
+    .chip { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.1rem 0.42rem; border-radius: 999px; background: var(--sage-pale); color: var(--ink-mid); border: 1px solid rgba(138,172,130,0.35); }
+    .card-desc { font-size: 0.83rem; color: var(--ink-mid); line-height: 1.65; font-family: 'Lora', serif; }
 
-    /* ── MAIN LAYOUT ── */
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem 6rem;
-    }
+    /* FOOTER */
+    .site-footer { margin-top: 4.5rem; padding: 2rem 0 2.5rem; border-top: 1px solid var(--border); text-align: center; }
+    .footer-ornament { font-size: 1.8rem; color: var(--sage); opacity: 0.6; margin-bottom: 0.5rem; }
+    .footer-text { font-size: 0.78rem; color: var(--ink-light); font-style: italic; font-family: 'Lora', serif; }
 
-    /* ── SECTION HEADER ── */
-    .section-header {
-      display: flex;
-      align-items: baseline;
-      gap: 1rem;
-      margin: 3.5rem 0 1.5rem;
-      padding-bottom: 0.75rem;
-      border-bottom: 1px solid var(--border);
-    }
+    /* FADE IN */
+    .fade-in { opacity: 0; transform: translateY(14px); transition: opacity 0.48s ease, transform 0.48s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
 
-    .section-icon {
-      font-size: 1rem;
-    }
-
-    h2 {
-      font-family: 'Fraunces', serif;
-      font-size: 1.5rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: -0.01em;
-    }
-
-    .section-count {
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-left: auto;
-    }
-
-    /* ── GRID ── */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1rem;
-    }
-
-    /* ── CARD ── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 1.5rem;
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(45,106,62,0.05);
-    }
-
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .card:hover {
-      background: var(--surface2);
-      border-color: var(--accent2);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(45,106,62,0.12);
-    }
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .card-name {
-      font-size: 1.05rem;
-      font-weight: 500;
-      color: var(--accent);
-      letter-spacing: -0.01em;
-    }
-
-    .card-arrow {
-      width: 28px;
-      height: 28px;
-      border-radius: 8px;
-      background: var(--tag-bg);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent);
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      transition: background 0.2s;
-    }
-    .card:hover .card-arrow {
-      background: rgba(45,106,62,0.15);
-    }
-
-    .card-desc {
-      font-size: 0.875rem;
-      line-height: 1.65;
-      color: var(--muted);
-      flex: 1;
-    }
-
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.4rem;
-      margin-top: 0.25rem;
-    }
-
-    .tag {
-      font-size: 0.68rem;
-      font-weight: 500;
-      padding: 0.25rem 0.65rem;
-      border-radius: 100px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .tag-green { background: rgba(45,106,62,0.1); color: var(--accent); }
-    .tag-teal  { background: rgba(74,157,111,0.1); color: var(--accent2); }
-    .tag-lime  { background: rgba(124,179,66,0.1); color: var(--accent3); }
-    .tag-blue  { background: rgba(66,133,244,0.1); color: #4285f4; }
-    .tag-amber { background: rgba(251,188,4,0.1); color: #fbbc04; }
-    .tag-rose  { background: rgba(217,48,37,0.1); color: #d93025; }
-
-    /* ── FILE CARD ── */
-    .card.file-card {
-      cursor: pointer;
-    }
-
-    .file-icon-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    .file-icon-wrap.pdf { background: rgba(217,48,37,0.1); }
-    .file-icon-wrap.docx { background: rgba(66,133,244,0.1); }
-
-    /* ── FOOTER ── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid var(--border);
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 2rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    footer p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .footer-logo {
-      font-family: 'Fraunces', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--accent);
-    }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 680px) {
-      header { grid-template-columns: 1fr; }
-      .header-badge { display: none; }
-      .grid { grid-template-columns: 1fr; }
-    }
-
-    /* ── ENTRANCE ANIMATION ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    header { animation: fadeUp 0.6s ease both; }
-    nav    { animation: fadeUp 0.6s 0.1s ease both; }
-    .card  {
-      animation: fadeUp 0.5s ease both;
+    @media (max-width: 600px) {
+      .card-grid { grid-template-columns: 1fr; }
+      .tab-btn { padding: 0.55rem 1.1rem; font-size: 0.9rem; }
+      .page-hero { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div>
-    <div class="header-eyebrow">Programa Diploma · IB</div>
-    <h1>Recursos para<br><em>Biología</em> DP</h1>
-    <p class="header-sub">Una colección curada de plataformas, herramientas y materiales para profesores y estudiantes de Biología del Bachillerato Internacional.</p>
-  </div>
-  <div class="header-badge">
-    <div class="badge-num">15</div>
-    <div class="badge-label">Recursos</div>
-  </div>
-</header>
+<svg class="leaf-deco leaf-deco-tl" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M150 380 C150 380 10 300 10 150 C10 50 100 10 150 10 C200 10 290 50 290 150 C290 300 150 380 150 380Z" fill="#3a6b35"/>
+  <path d="M150 380 C150 380 150 10 150 10" stroke="#2d5a27" stroke-width="3"/>
+  <path d="M150 280 C120 240 60 210 30 180" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 220 C110 190 65 175 40 155" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 160 C120 140 85 130 65 115" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 280 C180 240 240 210 270 180" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 220 C190 190 235 175 260 155" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 160 C180 140 215 130 235 115" stroke="#2d5a27" stroke-width="1.5"/>
+</svg>
+<svg class="leaf-deco leaf-deco-br" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M150 380 C150 380 10 300 10 150 C10 50 100 10 150 10 C200 10 290 50 290 150 C290 300 150 380 150 380Z" fill="#3a6b35"/>
+  <path d="M150 380 C150 380 150 10 150 10" stroke="#2d5a27" stroke-width="3"/>
+  <path d="M150 280 C120 240 60 210 30 180" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 220 C110 190 65 175 40 155" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 160 C120 140 85 130 65 115" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 280 C180 240 240 210 270 180" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 220 C190 190 235 175 260 155" stroke="#2d5a27" stroke-width="1.5"/>
+  <path d="M150 160 C180 140 215 130 235 115" stroke="#2d5a27" stroke-width="1.5"/>
+</svg>
 
-<nav>
-  <span class="nav-pill active">Todos</span>
-  <a class="nav-pill" href="#curriculo">Currículo digital</a>
-  <a class="nav-pill" href="#practica">Práctica y revisión</a>
-  <a class="nav-pill" href="#videos">Vídeos y visual</a>
-  <a class="nav-pill" href="#espanol">En español</a>
-  <a class="nav-pill" href="#ia">IA y herramientas</a>
-  <a class="nav-pill" href="#archivos">Archivos descargables</a>
-</nav>
+<div class="wrapper">
+  <header class="site-header">
+    <div class="header-rule"></div>
+    <p class="eyebrow">IB Diploma Programme · Biology</p>
+    <h1 class="site-title"><span class="ornament">🌿</span> Resource <em>Hub</em> <span class="ornament">🌿</span></h1>
+    <p class="site-subtitle">A curated field guide to tools for teachers &amp; students — FE2025 syllabus</p>
+    <div class="legend">
+      <span class="legend-item"><span class="dot dot-free"></span> Free</span>
+      <span class="legend-item"><span class="dot dot-paid"></span> Paid</span>
+      <span class="legend-item"><span class="dot dot-mixed"></span> Free + Paid</span>
+    </div>
+  </header>
 
-<main>
-
-  <!-- ── CURRÍCULO DIGITAL ── -->
-  <div id="curriculo" class="section-header">
-    <span class="section-icon">📚</span>
-    <h2>Currículo Digital</h2>
-    <span class="section-count">2 recursos</span>
-  </div>
-  <div class="grid">
-
-    <a class="card" href="https://kognity.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Kognity</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Libro de texto digital interactivo alineado al currículo del IB. Incluye preguntas de autocomprobación, animaciones y herramientas de seguimiento del progreso del alumnado en tiempo real. Ideal para usar en clase y como apoyo al estudio independiente.</p>
-      <div class="card-tags">
-        <span class="tag tag-green">Libro digital</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-    <a class="card" href="https://ib.bioninja.com.au/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">BioNinja</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Referencia online exhaustiva que cubre todo el temario de Biología IB con esquemas claros, definiciones precisas y diagramas descargables organizados por tema. Un recurso de consulta indispensable, especialmente útil para repasar antes de exámenes.</p>
-      <div class="card-tags">
-        <span class="tag tag-green">Temario completo</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
+  <div class="tabs-wrapper">
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" role="tab" aria-selected="true" data-panel="panel-teachers" id="tab-teachers">
+        <span class="tab-icon">👩‍🏫</span> Teachers
+      </button>
+      <button class="tab-btn" role="tab" aria-selected="false" data-panel="panel-students" id="tab-students">
+        <span class="tab-icon">👨‍🎓</span> Students
+      </button>
+    </div>
   </div>
 
-  <!-- ── PRÁCTICA Y REVISIÓN ── -->
-  <div id="practica" class="section-header">
-    <span class="section-icon">🧬</span>
-    <h2>Práctica y Revisión</h2>
-    <span class="section-count">5 recursos</span>
-  </div>
-  <div class="grid">
+  <!-- TEACHERS PANEL -->
+  <section class="page-panel active" id="panel-teachers" role="tabpanel" aria-labelledby="tab-teachers">
+    <div class="page-hero fade-in">
+      <div><h2>🌱 Teacher Resources</h2><p>Tools for planning, teaching, assessment and virtual lab facilitation</p></div>
+      <span class="page-count">14 resources</span>
+    </div>
 
-    <a class="card" href="https://www.revisionvillage.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Revision Village</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Plataforma líder de revisión para el IB con miles de preguntas de exámenes pasados, vídeos explicativos y estadísticas de rendimiento. Muy popular entre estudiantes en la recta final antes de los exámenes de mayo/noviembre.</p>
-      <div class="card-tags">
-        <span class="tag tag-blue">Exámenes pasados</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
+    <div class="section-label fade-in"><span class="section-label-icon">📖</span><span class="section-label-text">IB-Specific Teaching Tools</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://kognity.com/our-subjects/ibdp/biology/" target="_blank" rel="noopener">Kognity – DP Biology</a></h3><span class="cost-badge cost-paid">Paid</span></div>
+        <div class="card-chips"><span class="chip">Syllabus-aligned</span><span class="chip">FE2025</span><span class="chip">Analytics</span></div>
+        <p class="card-desc">Digital textbook and question bank aligned to the IB Biology FE2025 syllabus. Assign reading, auto-mark questions and track class progress.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.revisionvillage.com/ib-biology/" target="_blank" rel="noopener">Revision Village – IB Biology</a></h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Exam practice</span><span class="chip">AI feedback</span><span class="chip">Video sols</span></div>
+        <p class="card-desc">IB-style MCQs, short answer and data-based questions. Paid plans add full question banks and AI-powered feedback for deeper exam prep.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.iitianacademy.com/ibdp/ibdp-biology/" target="_blank" rel="noopener">IITian Academy – IB DP Biology</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Notes</span><span class="chip">Exam Qs</span><span class="chip">Flashcards</span></div>
+        <p class="card-desc">Topic-organised notes, exam-style questions and flashcards explicitly labelled for 2026–2028 IB Biology exam sessions.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://kisacademics.com/blog/what-are-the-top-10-resources-for-ib-students/" target="_blank" rel="noopener">KIS Academics – IB Resource Guides</a></h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Guides</span><span class="chip">Tutoring</span></div>
+        <p class="card-desc">Blog posts summarising top IB study resources and some free practice, with optional premium tutoring and support.</p>
+      </article>
+    </div>
 
-    <a class="card" href="https://www.revisiondojo.com/home" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">RevisionDojo</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Herramienta de práctica basada en flashcards y preguntas tipo IB con retroalimentación inmediata. Permite al alumnado identificar sus puntos débiles y practicar de forma personalizada con preguntas organizadas por tema y nivel de dificultad.</p>
-      <div class="card-tags">
-        <span class="tag tag-blue">Flashcards</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
+    <div class="section-label fade-in"><span class="section-label-icon">🔬</span><span class="section-label-text">Simulations &amp; Virtual Labs</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://virtualbiologylab.org" target="_blank" rel="noopener">Virtual Biology Lab</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Ecology</span><span class="chip">Evolution</span><span class="chip">Browser-based</span></div>
+        <p class="card-desc">Browser-based ecology and evolution simulations. Students design experiments, adjust parameters and collect data for analysis and graphing.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://gizmos.explorelearning.com/biology-collection" target="_blank" rel="noopener">ExploreLearning Gizmos – Biology</a></h3><span class="cost-badge cost-paid">Paid</span></div>
+        <div class="card-chips"><span class="chip">Virtual labs</span><span class="chip">Cells</span><span class="chip">Genetics</span></div>
+        <p class="card-desc">Large library of interactive simulations for cells, genetics, ecology and more — with ready-made worksheets and assessment questions.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://riseglobaleducation.com/blogs/free-online-labs-for-high-school-students" target="_blank" rel="noopener">Free Online Biology Labs (curated)</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Enzymes</span><span class="chip">Genetics</span><span class="chip">Homework</span></div>
+        <p class="card-desc">Curated collection of free labs and simulations (enzymes, ecology, genetics) that supplement practical work or homework tasks.</p>
+      </article>
+    </div>
 
-    <a class="card" href="https://www.ibcalculator.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">IBCalculator</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Calculadora de predicción de notas del IB. Permite estimar la nota final combinando las calificaciones internas y externas. Muy útil para que profesores y alumnos comprendan la ponderación del IA y los exámenes externos.</p>
-      <div class="card-tags">
-        <span class="tag tag-amber">Calificaciones</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
+    <div class="section-label fade-in"><span class="section-label-icon">🤖</span><span class="section-label-text">AI Tools for Teachers</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">NotebookLM</h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Summaries</span><span class="chip">Q sets</span><span class="chip">Flashcards</span></div>
+        <p class="card-desc">Upload unit plans, slides and readings to generate summaries, question sets and flashcards grounded in your own materials.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">Elicit</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Research</span><span class="chip">IA/EE</span><span class="chip">Papers</span></div>
+        <p class="card-desc">AI research assistant for finding and summarising scientific papers, extracting key results and helping build IA/EE reading lists.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">scite</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Citations</span><span class="chip">Source eval</span></div>
+        <p class="card-desc">Shows whether a paper's claims are supported or contradicted by later research — ideal for teaching source evaluation.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">BioRender</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Diagrams</span><span class="chip">Slides</span><span class="chip">Handouts</span></div>
+        <p class="card-desc">Template-based biology illustration platform for clean diagrams of cells, pathways and lab setups for slides and handouts.</p>
+      </article>
+    </div>
+  </section>
 
-    <a class="card" href="https://www.clastify.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Clastify</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Repositorio de trabajos internos (IA) y Extended Essays del IB aportados por estudiantes, muchos con las puntuaciones reales obtenidas. Excelente para que los alumnos vean ejemplos de trabajos de diferente calidad y entiendan los criterios de evaluación.</p>
-      <div class="card-tags">
-        <span class="tag tag-rose">Trabajos IA</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
+  <!-- STUDENTS PANEL -->
+  <section class="page-panel" id="panel-students" role="tabpanel" aria-labelledby="tab-students">
+    <div class="page-hero fade-in">
+      <div><h2>🌿 Student Resources</h2><p>Tools for studying, revision, virtual experiments and IA/EE support</p></div>
+      <span class="page-count">15 resources</span>
+    </div>
 
-    <a class="card" href="https://brilliantlearning.in/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Brilliant Learning</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Plataforma de recursos de apoyo para el IB con materiales de estudio, fichas de resumen y actividades de práctica. Ofrece contenido estructurado para complementar el aprendizaje en clase, especialmente útil para el repaso de conceptos clave.</p>
-      <div class="card-tags">
-        <span class="tag tag-green">Práctica</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
+    <div class="section-label fade-in"><span class="section-label-icon">📗</span><span class="section-label-text">Core IB Biology Study</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.iitianacademy.com/ibdp/ibdp-biology/" target="_blank" rel="noopener">IITian Academy – DP Biology</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Topic notes</span><span class="chip">Worked examples</span></div>
+        <p class="card-desc">Concise topic notes, worked examples and practice questions mapped to the new IB Biology syllabus — great for targeted revision.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.revisionvillage.com/ib-biology/" target="_blank" rel="noopener">Revision Village – IB Biology</a></h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Exam practice</span><span class="chip">AI feedback</span></div>
+        <p class="card-desc">Exam-style questions with detailed solutions and AI feedback. Free samples plus optional full access for deeper revision before exams.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">Kognity (via school)</h3><span class="cost-badge cost-paid">Paid</span></div>
+        <div class="card-chips"><span class="chip">Interactive textbook</span><span class="chip">Analytics</span></div>
+        <p class="card-desc">Interactive textbook with self-check questions and analytics that highlight your weak areas before topic tests.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://kisacademics.com/blog/what-are-the-top-10-resources-for-ib-students/" target="_blank" rel="noopener">KIS "QuizMe" – Biology HL Deck</a></h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Active recall</span><span class="chip">HL biology</span></div>
+        <p class="card-desc">Active-recall flashcards and quizzes for higher-level biology content, useful for daily micro-revision sessions.</p>
+      </article>
+    </div>
 
-  </div>
+    <div class="section-label fade-in"><span class="section-label-icon">💡</span><span class="section-label-text">Concept Explanations</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.khanacademy.org/science/biology" target="_blank" rel="noopener">Khan Academy – Biology</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Videos</span><span class="chip">Practice</span><span class="chip">Genetics</span></div>
+        <p class="card-desc">Clear videos and practice questions for cells, genetics, metabolism and ecology that support many IB core topics.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://www.hyperwriteai.com/aitools/ai-biology-learning-assistant" target="_blank" rel="noopener">Biology AI Assistant (HyperWrite)</a></h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">On-demand help</span><span class="chip">Concepts</span></div>
+        <p class="card-desc">On-demand explanations of terms and processes. Best used alongside class notes to clarify tricky concepts quickly.</p>
+      </article>
+    </div>
 
-  <!-- ── VÍDEOS Y RECURSOS VISUALES ── -->
-  <div id="videos" class="section-header">
-    <span class="section-icon">🎬</span>
-    <h2>Vídeos y Recursos Visuales</h2>
-    <span class="section-count">1 recurso</span>
-  </div>
-  <div class="grid">
+    <div class="section-label fade-in"><span class="section-label-icon">🧪</span><span class="section-label-text">Virtual Experiments &amp; Data</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://virtualbiologylab.org" target="_blank" rel="noopener">Virtual Biology Lab</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Data for graphs</span><span class="chip">IA ideas</span><span class="chip">Hardy-Weinberg</span></div>
+        <p class="card-desc">Run virtual investigations (e.g. predator–prey, Hardy–Weinberg) and export data for graphs, practice questions or IA ideas.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://gizmos.explorelearning.com/biology-collection" target="_blank" rel="noopener">Gizmos – Biology Simulations</a></h3><span class="cost-badge cost-paid">Paid</span></div>
+        <div class="card-chips"><span class="chip">Interactive labs</span><span class="chip">Data analysis</span></div>
+        <p class="card-desc">Interactive labs for exploring biological processes and practising data analysis where your school has a subscription.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name"><a href="https://riseglobaleducation.com/blogs/free-online-labs-for-high-school-students" target="_blank" rel="noopener">Free Online Biology Labs</a></h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">At-home access</span><span class="chip">Practicals</span></div>
+        <p class="card-desc">A set of free virtual labs you can use at home to reinforce practical understanding when you cannot access the school lab.</p>
+      </article>
+    </div>
 
-    <a class="card" href="https://www.amoebasisters.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Amoeba Sisters</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Canal de YouTube y web con vídeos animados de biología de alta calidad, accesibles y muy bien explicados. Cubren temas fundamentales del currículo IB (genética, evolución, biología celular…) de forma visual y entretenida. Perfectos para introducir un tema o aclarar conceptos difíciles.</p>
-      <div class="card-tags">
-        <span class="tag tag-lime">Vídeos</span>
-        <span class="tag tag-teal">Alumnos</span>
-        <span class="tag tag-teal">Aula</span>
-      </div>
-    </a>
+    <div class="section-label fade-in"><span class="section-label-icon">🧬</span><span class="section-label-text">AI Study Helpers &amp; IA/EE Support</span><div class="section-label-line"></div></div>
+    <div class="card-grid">
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">NotebookLM</h3><span class="cost-badge cost-free">Free</span></div>
+        <div class="card-chips"><span class="chip">Summaries</span><span class="chip">Flashcards</span><span class="chip">Personalised</span></div>
+        <p class="card-desc">Upload your notes, syllabus points and handouts to generate personalised summaries, questions and flashcards.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">RemNote / Anki</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Spaced repetition</span><span class="chip">Command terms</span></div>
+        <p class="card-desc">Spaced-repetition flashcard tools for definitions, pathways and command terms to support long-term retention.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">Elicit</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">IA/EE</span><span class="chip">Literature search</span></div>
+        <p class="card-desc">Helps you find and summarise scientific papers, extract data and organise references for the Internal Assessment or Extended Essay.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">scite</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Citation analysis</span><span class="chip">Source eval</span></div>
+        <p class="card-desc">Shows how a paper has been cited and whether its claims are supported — ideal for evaluating IA/EE sources critically.</p>
+      </article>
+      <article class="resource-card fade-in">
+        <div class="card-top"><h3 class="card-name">BioRender (Student Plan)</h3><span class="cost-badge cost-mixed">Free + Paid</span></div>
+        <div class="card-chips"><span class="chip">Diagrams</span><span class="chip">Reports</span><span class="chip">Presentations</span></div>
+        <p class="card-desc">Create clear, labelled scientific diagrams for reports and presentations without needing advanced graphic design skills.</p>
+      </article>
+    </div>
+  </section>
 
-  </div>
+  <footer class="site-footer">
+    <div class="footer-ornament">⚘</div>
+    <p class="footer-text">IB DP Biology Resource Hub · Adapt links to match your school's subscriptions and preferred IA/EE workflow.</p>
+  </footer>
+</div>
 
-  <!-- ── RECURSOS EN ESPAÑOL ── -->
-  <div id="espanol" class="section-header">
-    <span class="section-icon">🇪🇸</span>
-    <h2>Recursos en Español</h2>
-    <span class="section-count">2 recursos</span>
-  </div>
-  <div class="grid">
-
-    <a class="card" href="https://espacioprofesores.com/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">Espacio Profesores</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Comunidad y portal de recursos creado por y para profesores del IB hispanohablantes. Incluye materiales didácticos, guías de evaluación interna y foros de intercambio de buenas prácticas. Un espacio único para la colaboración docente en español.</p>
-      <div class="card-tags">
-        <span class="tag tag-green">Español</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-rose">Comunidad</span>
-      </div>
-    </a>
-
-    <a class="card" href="https://sites.google.com/view/ibbioson/home" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">IB Biosone</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Sitio web en español con recursos didácticos específicos para Biología IB. Contiene resúmenes por tema, actividades y materiales de apoyo elaborados en castellano, lo que lo convierte en un complemento muy valioso para el alumnado hispanohablante.</p>
-      <div class="card-tags">
-        <span class="tag tag-green">Español</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- ── IA Y HERRAMIENTAS ── -->
-  <div id="ia" class="section-header">
-    <span class="section-icon">🤖</span>
-    <h2>IA y Herramientas Digitales</h2>
-    <span class="section-count">1 recurso</span>
-  </div>
-  <div class="grid">
-
-    <a class="card" href="https://notebooklm.google/" target="_blank" rel="noopener">
-      <div class="card-top">
-        <span class="card-name">NotebookLM</span>
-        <span class="card-arrow">↗</span>
-      </div>
-      <p class="card-desc">Herramienta de IA de Google que permite cargar documentos (PDFs, apuntes, artículos) y conversar con ellos: hacer preguntas, generar resúmenes o crear guías de estudio. Los profesores pueden usarla para procesar recursos del IB; los alumnos, para estudiar sus propios apuntes de forma interactiva.</p>
-      <div class="card-tags">
-        <span class="tag tag-lime">Inteligencia Artificial</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-  </div>
-
-  <!-- ── ARCHIVOS DESCARGABLES ── -->
-  <div id="archivos" class="section-header">
-    <span class="section-icon">📁</span>
-    <h2>Archivos Descargables</h2>
-    <span class="section-count">4 archivos</span>
-  </div>
-  <div class="grid">
-
-    <a class="card file-card" href="Ejercicios_Mendel.pdf" target="_blank">
-      <div class="card-top">
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div class="file-icon-wrap pdf">📄</div>
-          <span class="card-name">Ejercicios Mendel</span>
-        </div>
-        <span class="card-arrow">↓</span>
-      </div>
-      <p class="card-desc">Colección de problemas de genética mendeliana que abarca cruces monohíbridos, dihíbridos, herencia intermedia, herencia ligada al sexo y series alélicas. Incluye ejercicios contextualizados en situaciones reales (grupos sanguíneos, hemofilia, daltonismo) alineados con el programa IB.</p>
-      <div class="card-tags">
-        <span class="tag tag-rose">PDF</span>
-        <span class="tag tag-amber">Genética</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-    <a class="card file-card" href="Problemas-de-genetica-RESUELTOS.pdf" target="_blank">
-      <div class="card-top">
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div class="file-icon-wrap pdf">📄</div>
-          <span class="card-name">Genética RESUELTOS</span>
-        </div>
-        <span class="card-arrow">↓</span>
-      </div>
-      <p class="card-desc">15 problemas de genética completamente resueltos y explicados paso a paso, con diagramas de cruce y cuadros de Punnett. Cubre herencia mendeliana, dominancia incompleta, herencia ligada al sexo, grupos sanguíneos y dihíbridismo. Recurso ideal para el trabajo autónomo y la autoevaluación.</p>
-      <div class="card-tags">
-        <span class="tag tag-rose">PDF</span>
-        <span class="tag tag-amber">Genética</span>
-        <span class="tag tag-green">Soluciones</span>
-      </div>
-    </a>
-
-    <a class="card file-card" href="Usa_eficaz_de_citas_y_referencias_v2022.pdf" target="_blank">
-      <div class="card-top">
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div class="file-icon-wrap pdf">📄</div>
-          <span class="card-name">Citas y Referencias IB</span>
-        </div>
-        <span class="card-arrow">↓</span>
-      </div>
-      <p class="card-desc">Guía oficial del IB (2022, en español) sobre el uso eficaz de citas y referencias académicas. Explica qué, cuándo y cómo citar en diferentes formatos (MLA, APA, Chicago), con ejemplos concretos para fuentes impresas, electrónicas y audiovisuales. Esencial para la Monografía y el IA.</p>
-      <div class="card-tags">
-        <span class="tag tag-rose">PDF</span>
-        <span class="tag tag-lime">Oficial IB</span>
-        <span class="tag tag-teal">Profesores</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-    <a class="card file-card" href="Habilidades_en_el_estudio_de_Biología.docx" target="_blank">
-      <div class="card-top">
-        <div style="display:flex;align-items:center;gap:0.75rem;">
-          <div class="file-icon-wrap docx">📝</div>
-          <span class="card-name">Habilidades en Biología</span>
-        </div>
-        <span class="card-arrow">↓</span>
-      </div>
-      <p class="card-desc">Documento con orientaciones sobre las habilidades necesarias para el estudio de la Biología IB: cómo abordar la interpretación de gráficas, el análisis de datos, la elaboración de conclusiones y el trabajo con fuentes científicas. Un recurso de apoyo metodológico para el alumnado.</p>
-      <div class="card-tags">
-        <span class="tag tag-blue">DOCX</span>
-        <span class="tag tag-amber">Habilidades</span>
-        <span class="tag tag-teal">Alumnos</span>
-      </div>
-    </a>
-
-  </div>
-
-</main>
-
-<footer>
-  <div class="footer-logo">Biología IB</div>
-  <p>Recursos curados para el Programa Diploma · Actualizado 2026</p>
-</footer>
-
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.page-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.panel;
+      tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active'); btn.setAttribute('aria-selected','true');
+      const panel = document.getElementById(target);
+      panel.classList.add('active');
+      panel.querySelectorAll('.fade-in').forEach(el => { el.classList.remove('visible'); void el.offsetWidth; });
+      setTimeout(observeAll, 40);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  function observeAll() {
+    const items = document.querySelectorAll('.page-panel.active .fade-in:not(.visible)');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible'), i * 60); obs.unobserve(entry.target); }
+      });
+    }, { threshold: 0.07 });
+    items.forEach(el => obs.observe(el));
+  }
+  observeAll();
+</script>
 </body>
 </html>
